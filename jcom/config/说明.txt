@@ -1,0 +1,17 @@
+说明：本示例使用的环境是：windows7  office2010   jdk1.7 32位    jacob-1.18
+
+环境配置：
+1.需要根据jdk位数将jacob-1.18..dll放在jre/bin目录下,32位jdk放86版本，64位放64版本
+2.项目导入jacob-1.18.jar
+
+
+
+补充：
+		private static final int word_pdf=17;//word转pdf
+		private static final int excel_Pdf=57;//excel转pdf（容易使行分在不同的页面）
+		private static final int WORD_HTML = 8; // word转html（容易变形）  
+		private static final int WORD_TXT = 7;  //word转txt
+		private static final int EXCEL_HTML = 44; //excel转html（容易出现格式丢失IE正常，谷歌格式有时丢失）
+总结:
+ 		doc/docx 转换成pdf
+ 		xls/xlsx 转换成html
