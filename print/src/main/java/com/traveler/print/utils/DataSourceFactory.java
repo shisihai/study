@@ -1,4 +1,4 @@
-package com.traveler.print;
+package com.traveler.print.utils;
 import javax.sql.ConnectionPoolDataSource;
 
 import org.sqlite.javax.SQLiteConnectionPoolDataSource;
