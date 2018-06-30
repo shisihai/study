@@ -10,7 +10,7 @@ import org.sqlite.javax.SQLiteConnectionPoolDataSource;
  */
 public class DataSourceFactory {
 	//static final String sqlLiteUrl="jdbc:sqlite:C:\\ProjectResources\\gitLocalResource\\ProjectResource\\logging.db";
-	static final String sqlLiteUrl="jdbc:sqlite:E:\\DK_ToolsDB\\logging.db";
+	static final String sqlLiteUrl="jdbc:sqlite:F:\\pr\\study\\dbFiles\\printSys.db";
 	public static ConnectionPoolDataSource createDataSource() throws Exception {
 		SQLiteConnectionPoolDataSource dataSource = new SQLiteConnectionPoolDataSource();
 		dataSource.setUrl(sqlLiteUrl);

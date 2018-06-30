@@ -20,12 +20,6 @@ public class ExecuteSql {
 		initDBPool();
 	}
 
-	/**
-	 * <p>
-	 * 功能描述：初始化连接�?
-	 * </p>
-	 * 作�?�：SShi11 日期：Apr 6, 2017 12:45:31 PM
-	 */
 	private static void initDBPool() {
 		try {
 			ConnectionPoolDataSource dataSource = DataSourceFactory.createDataSource();
@@ -39,11 +33,6 @@ public class ExecuteSql {
 	 * <p>
 	 * 功能描述：执行增删改操作sql
 	 * </p>
-	 * 
-	 * @param sql
-	 * @param params
-	 * @throws SQLException
-	 *             作�?�：SShi11 日期：Apr 6, 2017 1:03:38 PM
 	 */
 	public static void execSql(String sql, Object... params) throws SQLException {
 		Connection conn = getConn();
@@ -58,17 +47,6 @@ public class ExecuteSql {
 		closeResouse(conn, prst, null);
 	}
 
-	/**
-	 * <p>
-	 * 功能描述：查�?
-	 * </p>
-	 * 
-	 * @param sql
-	 * @param params
-	 * @return
-	 * @throws Exception
-	 *             作�?�：SShi11 日期：Apr 24, 2017 10:19:43 AM
-	 */
 	public static List<Map<String, Object>> queryBySql(String sql, Object... params) throws Exception {
 		Connection connection = getConn();
 		PreparedStatement prst = null;
@@ -93,18 +71,6 @@ public class ExecuteSql {
 		closeResouse(connection, prst, null);
 		return result;
 	}
-
-	/**
-	 * <p>
-	 * 功能描述：关闭资�?
-	 * </p>
-	 * 
-	 * @param conn
-	 * @param prst
-	 * @param stmt
-	 * @throws SQLException
-	 *             作�?�：SShi11 日期：Apr 6, 2017 1:03:25 PM
-	 */
 	private static void closeResouse(Connection conn, PreparedStatement prst, Statement stmt) throws SQLException {
 		if (stmt != null) {
 			stmt.close();
@@ -117,15 +83,6 @@ public class ExecuteSql {
 		}
 	}
 
-	/**
-	 * <p>
-	 * 功能描述：获取数据库连接资源
-	 * </p>
-	 * 
-	 * @return
-	 * @throws SQLException
-	 *             作�?�：SShi11 日期：Apr 6, 2017 12:50:51 PM
-	 */
 	private static Connection getConn() throws SQLException {
 		Connection connection = null;
 		if (poolMgr == null)

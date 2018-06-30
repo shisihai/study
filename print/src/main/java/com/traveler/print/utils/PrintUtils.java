@@ -1,39 +1,36 @@
 package com.traveler.print.utils;
 import javax.print.*;
+
+import com.traveler.print.entity.PrinterService;
 public final  class PrintUtils {
 	/**
 	 * 根据地址获取打印机Service
 	 * @param printerURI
 	 * @return
+	 * @throws OperationException 
 	 */
-	public static PrintService findPrintService(String printerURI){
+	public static PrinterService findPrintService(String printerName) throws OperationException{
+		PrinterService printerService=new PrinterService();
 		PrintService printService = null;
         //初始化打印机  
         PrintService[] services = PrintServiceLookup.lookupPrintServices(null,null);  
         if (services != null && services.length > 0) {  
             for (PrintService service : services) {  
-                if (printerURI.equalsIgnoreCase(service.getName())) {  
+                if (printerName.equalsIgnoreCase(service.getName())) {  
                     printService = service;  
                     break;  
                 }  
             }  
-        }  
-        
-        if (printService == null) {  
+        }
+        //查找默认打印机
+        if (printService == null) {
         	printService = PrintServiceLookup.lookupDefaultPrintService();
-            if (services != null && services.length > 0) {  
-            	System.out.println("可用的打印机列表:");  
-                for (PrintService service : services) {  
-                	System.out.println("["+service.getName()+"]");  
-                }  
-             }  
             if(printService == null){
-            	System.out.println("没找到打印机:"+printerURI); 
-               System.out.println("没找到打印机"+printerURI);
+            	throw new OperationException("没找到打印机"+printerName);
             }
-        }else{ 
-        	System.out.println("找到打印机：["+printerURI+"]"); 
-        } 
-        return printService;
+            printerService.setDefault(true);
+        }
+        printerService.setPrintService(printService);
+        return printerService;
 	}
 }

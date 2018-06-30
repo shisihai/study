@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<!-- 需要保存到数据库的日志 -->
+	<appender name="saveLog" class="com.traveler.print.utils.Logger">
+		<!-- <connectionSource class="ch.qos.logback.core.db.DriverManagerConnectionSource">
+				<driverClass>oracle.jdbc.driver.OracleDriver</driverClass>
+				<url>jdbc:oracle:thin:@10.1.245.54:1521:PROD</url>
+				<user>reportDB</user>
+				<password>reportDB</password>
+		</connectionSource> -->
+		<connectionSource class="ch.qos.logback.core.db.DriverManagerConnectionSource">
+				<driverClass>org.sqlite.JDBC</driverClass>
+				<url>jdbc:sqlite:F:\\pr\\study\\dbFiles\\printSys.db</url>
+				<user></user>
+				<password></password>
+		</connectionSource>
+	</appender>
+	<!-- 调试日志 -->
+	<appender name="showSQl" class="ch.qos.logback.core.ConsoleAppender">  
+	    <encoder>
+	      <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>  
+	      <charset>GBK</charset> 
+	    </encoder>  
+  	</appender>  
+	<logger name="com.traveler" level="info">  
+        <appender-ref ref="saveLog" />
+    </logger>  
+    <logger name="com.traveler" level="debug">  
+        <appender-ref ref="showSQl" />
+    </logger>
+</configuration>
