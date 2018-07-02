@@ -1,0 +1,5 @@
+打印服务设计目标：
+调用服务支持协议：Http（WebAPI）、SOAP(webservice)、JMS(apache activemq)
+模板支持：TIBOC Jaspersoft studio-6.6.0(.jasper格式文件)、freemarker(.ftl格式文件)
+当前已经实现：
+webapi、jasper

@@ -1,12 +1,13 @@
 package com.traveler.print.entity;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Map;
 
 import com.traveler.print.utils.OperationException;
 import com.traveler.print.utils.StringUtils;
-import com.traveler.print.utils.WarnException;
-public class JasperParams {
+public class JasperParams implements Serializable{
+	private static final long serialVersionUID = 1L;
 	//模板名称
 	private String jasperName;
 	//打印机名称
@@ -26,19 +27,19 @@ public class JasperParams {
 	public void setJasperName(String jasperName) {
 		this.jasperName = jasperName;
 	}
-	public String getPrinterName() throws WarnException {
+	public String getPrinterName()  {
 		return printerName;
 	}
 	public void setPrinterName(String printerName) {
 		this.printerName = printerName;
 	}
-	public Collection<Map<String, Object>> getDatas() throws WarnException {
+	public Collection<Map<String, Object>> getDatas()  {
 		return datas;
 	}
 	public void setDatas(Collection<Map<String, Object>> datas) {
 		this.datas = datas;
 	}
-	public Map<String, Object> getParamsMap() throws WarnException {
+	public Map<String, Object> getParamsMap()  {
 		return paramsMap;
 	}
 	public void setParamsMap(Map<String, Object> paramsMap) {
