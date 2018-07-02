@@ -51,15 +51,19 @@ public class SendEmailUtils {
 	public static void SendEmail(String sendName,String subject,String content,String filePath,Address[] addrs) throws UnsupportedEncodingException, MessagingException{
 		Session session = Session.getInstance(properties); // 创建会话对象
 		MimeMessage message = new MimeMessage(session); // 创建邮件对象
+		message.setHeader("X-Mailer", "Microsoft Outlook Express 6.00.2900.2869");
 		// From: 发件人
 		message.setFrom(new InternetAddress(formAddr, sendName, "UTF-8"));
 		//  To: 收件人
 		message.setRecipients(MimeMessage.RecipientType.TO, addrs);
+		//抄送给自己
+		//message.setRecipient(MimeMessage.RecipientType.CC,new InternetAddress(formAddr,"备份信息"));
 		// 邮件主题
 		message.setSubject(subject, "UTF-8");
 		//设置内容
 		BodyPart messageBodyPart = new MimeBodyPart();
-		messageBodyPart.setText(content);
+		//messageBodyPart.setText(content);
+		messageBodyPart.setContent(content, "text/html; charset=utf-8");
 		// 附件
 		Multipart multipart = new MimeMultipart();
 		multipart.addBodyPart(messageBodyPart);
@@ -70,7 +74,7 @@ public class SendEmailUtils {
 	        messageBodyPart.setFileName(filePath);
 	        multipart.addBodyPart(messageBodyPart);
 		}
-		message.setContent(multipart);
+		message.setContent(multipart,"text/html; charset=utf-8");
 		//  设置显示的发件时间
 		message.setSentDate(new Date());
 		//  保存前面的设置
@@ -84,6 +88,7 @@ public class SendEmailUtils {
 	
 	public static void main(String[] args) throws IOException, MessagingException {
 		Address[] addresses=new InternetAddress[]{new InternetAddress("hothoot@126.com", "126邮箱", "UTF-8"),new InternetAddress("zxc2462006@qq.com", "QQ邮箱", "UTF-8")};
-		SendEmail("MES", "LongiMES 附件", "Longi MES 正式上线通知：内含有附件，请仔细查阅...",null, addresses);
+		String htmlStr="<table border=\"1\"><thead><th>姓名</th><th>性别</th></thead><tbody><tr><td>衣启尧</td><td>女</td></tr><tr><td>江小伟</td><td>女</td></tr></tbody></table>";
+		SendEmail("发件人昵称", "主题", htmlStr,null, addresses);
 	}
 }
